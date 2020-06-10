@@ -4,12 +4,11 @@ function index()
 	if not nixio.fs.access("/etc/config/vlmcsd") then
 		return
 	end
-	entry({"admin", "custom"}, firstchild(), "我的", 89).dependent = false
 	local page
-	page = entry({"admin", "custom", "vlmcsd"}, cbi("vlmcsd"), _("KMS Server"), 4)
+	page = entry({"admin", "services", "vlmcsd"}, cbi("vlmcsd"), _("KMS Server"), 100)
 	page.i18n = "vlmcsd"
 	page.dependent = true
-	entry({"admin", "custom", "vlmcsd", "status"}, call("act_status")).leaf=true
+	entry({"admin","services","vlmcsd","status"},call("act_status")).leaf=true
 end
 
 function act_status()
